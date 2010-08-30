@@ -1,0 +1,29 @@
+Linux kernel LEDs driver for Shuttle VFD
+
+This (20x1 characters) LCD device is shipped with Shuttle models: SD365GM, SG33G5M.
+
+This driver will register 16 leds and one sysfs entry (with 0666 rights).
+
+It was tested on 2.6.34 on Shuttle SG33G5M.
+This driver is a alternative version of shuttle_vfd.
+
+
+Quick start
+-----------
+Check if hardware is there:
+# lsusb | grep VFD
+Bus 005 Device 003: ID 051c:0005 Shuttle, Inc. VFD Module
+
+Compilation (dependency: led-class.ko):
+# make
+# insmod ./shuttle_leds.ko
+
+
+Usage
+-----
+$ echo "test 123" > /sys/bus/usb/drivers/shuttle_leds/5-2\:1.1/text
+
+$ ls /sys/class/leds/
+camera	cd  clock  fastforward	music  mute  pause  play  radio  record  repeat  reverse  rewind  stop	tv  volume
+
+All icons have max_brightness=1 except for volume icon which is 12.
