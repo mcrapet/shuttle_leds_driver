@@ -55,7 +55,7 @@
 #define SHUTTLE_VFD_INTERFACE           1
 
 /* VFS Icons (volume icon is not included) */
-#define NUM_LEDS 15
+#define NUM_LEDS                        15
 #define SHUTTLE_VFD_ICON_VOL(x)         ((x) << 15)
 #define SHUTTLE_VFD_ICON_VOL_NUM        12
 #define SHUTTLE_VFD_BASE_MASK           0x7FFF
