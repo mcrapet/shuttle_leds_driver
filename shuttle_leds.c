@@ -41,6 +41,7 @@
 #include <linux/kernel_stat.h>
 #include <linux/slab.h>
 #include <linux/leds.h>
+#include <linux/hid.h>
 
 #define SHUTTLE_VFD_VENDOR_ID           0x051C
 
@@ -108,8 +109,8 @@ static int vfd_send_packet(struct shuttle_vfd *vfd, unsigned char *packet)
 	mutex_lock(&vfd->vfd_mutex);
 	result = usb_control_msg(vfd->udev,
 			usb_sndctrlpipe(vfd->udev, 0),
-			0x09,
-			0x21,    // HID class
+			HID_REQ_SET_REPORT,
+			USB_DIR_OUT | USB_TYPE_CLASS | USB_RECIP_INTERFACE,
 			0x0200,
 			SHUTTLE_VFD_INTERFACE,
 			(char *) (packet) ? packet : vfd->packet,
